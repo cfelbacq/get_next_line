@@ -6,7 +6,7 @@
 /*   By: cfelbacq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 11:06:33 by cfelbacq          #+#    #+#             */
-/*   Updated: 2016/01/11 13:50:04 by cfelbacq         ###   ########.fr       */
+/*   Updated: 2016/01/12 17:08:43 by cfelbacq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,21 @@ static	char	*read_file(int fd, char *s)
 {
 	char	buf[BUFF_SIZE + 1];
 	int		ret;
+	char	*tmp;
 
+	tmp = NULL;
 	ret = -2;
 	while (check_endline(buf, ret) == 1 && ret != 0)
 	{
+		tmp = s;
 		ret = read(fd, buf, BUFF_SIZE);
 		if (ret == -1)
 			return (NULL);
 		buf[ret] = '\0';
-		if ((s = ft_strjoin(s, buf)) == NULL)
-			return (NULL);
+		if (buf[0] != '\0')
+			if ((s = ft_strjoin(s, buf)) == NULL)
+				return (NULL);
+		ft_strdel(&tmp);
 	}
 	return (s);
 }
