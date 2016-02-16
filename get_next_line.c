@@ -6,7 +6,7 @@
 /*   By: cfelbacq <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 11:06:33 by cfelbacq          #+#    #+#             */
-/*   Updated: 2016/01/12 17:08:43 by cfelbacq         ###   ########.fr       */
+/*   Updated: 2016/01/12 13:33:45 by cfelbacq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ static	char	*read_file(int fd, char *s)
 		if (ret == -1)
 			return (NULL);
 		buf[ret] = '\0';
-		if (buf[0] != '\0')
-			if ((s = ft_strjoin(s, buf)) == NULL)
-				return (NULL);
+		if ((s = ft_strjoin(s, buf)) == NULL)
+			return (NULL);
 		ft_strdel(&tmp);
 	}
 	return (s);
